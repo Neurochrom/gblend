@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\gblend.cpp" />
+    <ClCompile Include="..\xgetopt\XGetopt.cpp">
+      <Filter>xgetopt</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="docs">
+      <UniqueIdentifier>{6df40117-4d45-4946-bfc3-bad5c3ce3d10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xgetopt">
+      <UniqueIdentifier>{4418af04-bf70-43a7-84e3-114d216e0f21}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\BUILD.TXT">
+      <Filter>docs</Filter>
+    </Text>
+    <Text Include="..\README.TXT">
+      <Filter>docs</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\COPYING">
+      <Filter>docs</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\xgetopt\XGetopt.h">
+      <Filter>xgetopt</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

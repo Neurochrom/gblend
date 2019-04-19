@@ -1,5 +1,7 @@
-To build this program use gcc:
+If you're on windows you can use the supplied Visual Studio project in the winBuild directory
 
-gcc -o gblend gblend.c
+Otherwise use gcc to build this program:
+
+gcc -o2 -o gblend gblend.cpp
 
 Tested on 64-bit Linux but should work on nearly any gcc including Cygwin

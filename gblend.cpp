@@ -26,7 +26,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+
+#ifdef _MSC_VER
+#include "xgetopt/XGetopt.h"
+#define strdup _strdup
+#else
 #include <unistd.h>
+#endif
 
 #ifndef DEBUG
 #define DEBUG 0
@@ -74,8 +80,8 @@ char linebuf[2049];
 char holdbuf[2049];
 
 // default tokens
-char *starttoken="%%%GBLEND_START";
-char *endtoken="%%%GBLEND_END";
+const char *starttoken="%%%GBLEND_START";
+const char *endtoken="%%%GBLEND_END";
 
 
 // Processing engine -- this could be called from a GUI
@@ -96,7 +102,7 @@ char *endtoken="%%%GBLEND_END";
 // 2 = Done
 // 3 = Not used
 // 4 = Look for start token
-int process(FILE *out,char *fn,float start, float end, int equal, int all, int fromstart, int toend, int noterm, int nostarttoken, int noendtoken)
+int process(FILE *out,char *fn,double start, double end, int equal, int all, int fromstart, int toend, int noterm, int nostarttoken, int noendtoken)
 {
   FILE *in=fopen(fn,"r");
   if (!in) return 1;
@@ -159,7 +165,7 @@ int process(FILE *out,char *fn,float start, float end, int equal, int all, int f
 	  else if (g1flag && *token=='Z')   // here we are in a G1 and we found a Z
 	    {
 	      
-	      float z=atof(token+1);
+	      double z=atof(token+1);
 #if DEBUG==1
 	      printf("DBG FOUND Z ****** %f\n",z);
 	      printf("start=%f end=%f all=%d toend=%d equal=%d\n",start, end, all,toend,equal);
@@ -237,8 +243,8 @@ int process(FILE *out,char *fn,float start, float end, int equal, int all, int f
 int main(int argc, char *argv[])
 {
   unsigned nextlayer=1;
-  int c,i, skipflag;
-  float start_mm=0.0, end_mm;
+  int c, i;
+  double start_mm=0.0, end_mm;
   int fromstartflag, allflag, toendflag, endequalflag;
   int term=1,nostart=0,nostop=0;
   char *fn;
